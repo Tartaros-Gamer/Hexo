@@ -1,0 +1,246 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Minecraft 启动参数之 Hilltty | Tartaros</title><meta name="keywords" content="游戏,服务端,启动参数"><meta name="author" content="Tartaros"><meta name="copyright" content="Tartaros"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="翻译自 Hilltty Flags。Tartaros 建议：该 Flags 在高版本纯净服务器（1.16+）适用，较旧的版本可能不够稳定或性能无法达到文章所述说的水准。  为什么不使用 Aikar flags?他的启动参数垃圾收集器基于 G1 算法。正如他所说，该算法非常稳定，但按照目前的标准，速度非常慢。同时，随着 JVM 的迭代，它已经非常过时了，在 JDK 8 时代，我们相信它实现的一切都是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Minecraft 启动参数之 Hilltty">
+<meta property="og:url" content="https://tartaros-gamer.github.io/2021/10/05/HillttyFlags/index.html">
+<meta property="og:site_name" content="Tartaros">
+<meta property="og:description" content="翻译自 Hilltty Flags。Tartaros 建议：该 Flags 在高版本纯净服务器（1.16+）适用，较旧的版本可能不够稳定或性能无法达到文章所述说的水准。  为什么不使用 Aikar flags?他的启动参数垃圾收集器基于 G1 算法。正如他所说，该算法非常稳定，但按照目前的标准，速度非常慢。同时，随着 JVM 的迭代，它已经非常过时了，在 JDK 8 时代，我们相信它实现的一切都是">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-10-05T04:48:11.835Z">
+<meta property="article:modified_time" content="2021-10-05T04:48:11.835Z">
+<meta property="article:author" content="Tartaros">
+<meta property="article:tag" content="游戏">
+<meta property="article:tag" content="服务端">
+<meta property="article:tag" content="启动参数">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="https://i.loli.net/2021/10/03/oT7xqFHZJiWpkGf.png"><link rel="canonical" href="https://tartaros-gamer.github.io/2021/10/05/HillttyFlags/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: {"limitDay":120,"position":"top","messagePrev":"距离上次更新已经过了","messageNext":"天了，内容可能已经过时，无法作为参考。"},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Tartaros","link":"链接: ","source":"来源: Tartaros","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'mediumZoom',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Minecraft 启动参数之 Hilltty',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-10-05 04:48:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://i.loli.net/2021/10/03/oT7xqFHZJiWpkGf.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Tartaros</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Minecraft 启动参数之 Hilltty<a class="post-edit-link" href="https://github.com/Tartaros-Gamer/HexoB/edit/main/source/_posts/HillttyFlags.md" title="编辑" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-10-05T04:48:11.835Z" title="发表于 2021-10-05 04:48:11">2021-10-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-10-05T04:48:11.835Z" title="更新于 2021-10-05 04:48:11">2021-10-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Minecraft/">Minecraft</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Minecraft 启动参数之 Hilltty"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><div class="note blue icon flat"><i class="note-icon fas fa-bullhorn"></i><p>翻译自 <a target="_blank" rel="noopener" href="https://github.com/hilltty/hilltty-flags">Hilltty Flags</a>。<br><br>Tartaros 建议：该 Flags 在高版本纯净服务器（1.16+）适用，较旧的版本可能不够稳定或性能无法达到文章所述说的水准。</p>
+</div>
+<h2 id="为什么不使用-Aikar-flags"><a href="#为什么不使用-Aikar-flags" class="headerlink" title="为什么不使用 Aikar flags?"></a>为什么不使用 <a target="_blank" rel="noopener" href="https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/">Aikar flags</a>?</h2><p>他的启动参数垃圾收集器基于 G1 算法。正如他所说，该算法非常稳定，但按照目前的标准，速度非常慢。同时，随着 JVM 的迭代，它已经非常过时了，在 JDK 8 时代，我们相信它实现的一切都是富有创新意义的，但事与愿违，我们始终要向新的技术迈进。您可能会问，为什么要改变一些现行有效的东西？嗯，为了迎接更富有机遇的未来，您应该那么做。</p>
+<p>作者建议用 Shenandoah 取代它 - 这是一个暂停时间非常短的垃圾收集器，非常适合我们最喜欢的游戏，毕竟我们都不喜欢未响应。在整个不间断试验期间，我们相信这不会影响稳定性。至少就目前来说，没有发现一个问题。</p>
+<h2 id="启动参数"><a href="#启动参数" class="headerlink" title="启动参数"></a>启动参数</h2><p><strong>支持的 JDK 组件：</strong></p>
+<p><em>作者个人推荐使用 OpenJDK 16</em></p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> OpenJDK 8+</li>
+<li><input checked="" disabled="" type="checkbox"> Red Hat 8+</li>
+<li><input checked="" disabled="" type="checkbox"> Amazon 11+</li>
+<li><input checked="" disabled="" type="checkbox"> Azul 11+</li>
+<li><input checked="" disabled="" type="checkbox"> AdoptOpenJDK 11+</li>
+<li><input disabled="" type="checkbox"> Oracle</li>
+<li><input disabled="" type="checkbox"> SAP</li>
+</ul>
+<p><strong>支持的服务端类型：</strong></p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 纯净</li>
+<li><input checked="" disabled="" type="checkbox"> Bukkit 系</li>
+<li><input checked="" disabled="" type="checkbox"> Fabric</li>
+<li><input checked="" disabled="" type="checkbox"> Forge</li>
+</ul>
+<p><strong>一个配置好的参数示例：</strong></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">java</span> <span class="string">-jar</span> <span class="string">-server</span> <span class="string">-Xms6G</span> <span class="string">-Xmx6G</span> <span class="string">-XX:+UseLargePages</span> <span class="string">-XX:LargePageSizeInBytes=2M</span> <span class="string">-XX:+UnlockExperimentalVMOptions</span> <span class="string">-XX:+UseShenandoahGC</span> <span class="string">-XX:ShenandoahGCMode=iu</span> <span class="string">-XX:+UseNUMA</span> <span class="string">-XX:+AlwaysPreTouch</span> <span class="string">-XX:-UseBiasedLocking</span> <span class="string">-XX:+DisableExplicitGC</span> <span class="string">-Dfile.encoding=UTF-8</span> <span class="string">launcher-airplane.jar</span> <span class="string">--nogui</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>警告 <code>Option UseBiasedLocking was deprecated in version 15.0 and will likely be removed in a future release.</code> 可以被安全地忽略，到目前为止 UseBiasedLocking 标签仍能很好地完成它的工作。</p>
+</blockquote>
+<p><strong>现在我们将详细的为您介绍每个标签在整体参数中承担的责任：</strong></p>
+<p> <em>-Xms6G</em> 与 <em>-Xmx6G</em>：设置 Minecraft 服务器的内存使用限制，我建议服务器使用的内存不要超过12GB，并始终为系统保留1-2GB的可用内存。</p>
+<p> <em>-XX:+UseLargePages</em> 与 <em>-XX:LargePageSizeInBytes = 2M</em>: 允许使用大页面和批量注册内存，用以加快启动速度和服务器响应速度。让 Linux 为我们注册页面。将此行添加到 <code>/etc/sysctl.conf</code>:</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">vm.nr_hugepages</span> <span class="string">=</span> <span class="number">3372</span></span><br></pre></td></tr></table></figure>
+
+<p>我们如何得到这个数字的？假设我想注册 6GB 的大页面，为此，我将 6GB 除以2。</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">6</span> <span class="string">*</span> <span class="number">1024</span> <span class="string">/</span> <span class="number">2</span> <span class="string">=</span> <span class="number">3072</span></span><br></pre></td></tr></table></figure>
+
+<p>接下来，我建议留出一些空闲空间，在我们的号码上增加 300。</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3072</span> <span class="string">+</span> <span class="number">300</span> <span class="string">=</span> <span class="number">3372</span></span><br></pre></td></tr></table></figure>
+
+<p>然后我们重新启动系统以应用更改。您可以使用命令验证内存是否已成功注册。<br><code>grep -i hugepages /proc/meminfo</code>.</p>
+<hr>
+<p><em>-XX:+UnlockExperimentalVMOptions</em>：允许使用实验性功能。</p>
+<p><em>-XX:+UseShenandoahGC</em>：将 Shenandoah 项目用作垃圾收集算法（翻译器就是这样读取这个名称的）。</p>
+<p><em>-XX:ShenandoahGCMode=iu</em>：打开我们的汇编程序的实验模式，它是 SATB 模式的镜像，这将使 标记 不那么保守，特别是在访问 弱链接 方面。</p>
+<hr>
+<p><em>-XX:+UseNUMA</em>：在具有多个 sockets 的主机上启用 NUMA 交错，与 AlwaysPreTouch 结合使用时，它提供了比默认开箱即用配置更好的性能。有关此体系结构的更多详细信息，请 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Non-uniform_memory_access">从这里</a> 参见详情。</p>
+<p><em>-XX:+AlwaysPreTouch</em>：一次性预注册所有分配内存，减少输入延迟。</p>
+<p><em>-XX:-UseBiasedLocking</em>：该选项是在 无限（有偏）锁定的带宽和 JVM 根据需要打开和关闭锁定的 安全点(safe point) 之间的一种折衷。对于以延迟为中心的工作负载，包括 Minecraft 服务器，禁用 有偏(biased) 阻塞是有意义的。</p>
+<p><em>-XX:+DisableExplicitGC</em>：从自定义代码调用System.gc() 会强制 ShenandoahGC 执行额外的垃圾收集周期，禁用可以防止代码滥用垃圾收集器。</p>
+<h2 id="服务端软件-核心"><a href="#服务端软件-核心" class="headerlink" title="服务端软件 (核心)"></a>服务端软件 (核心)</h2><p>对于最稳定和有效的选择，作者推荐 <a target="_blank" rel="noopener" href="https://github.com/TECHNOVE/Airplane">Airplane</a>.</p>
+<h2 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h2><p>Tuned adm 是一个命令行工具，允许您在优化的配置文件之间切换，以提高许多特定用例中的性能。使用命令安装 <code>apt-get</code>：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">sudo</span> <span class="string">apt-get</span> <span class="string">install</span> <span class="string">tuned</span></span><br></pre></td></tr></table></figure>
+
+<p>接下来，您需要为您的系统选择配置，我建议使用 <code>throughput-performance</code> 或者 <code>latency-performance</code>，设置所需的配置文件：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">sudo</span> <span class="string">tuned-adm</span> <span class="string">profile</span> <span class="string">throughput-performance</span></span><br></pre></td></tr></table></figure>
+
+<p>您可以验证更改是否已通过，使用命令应用 <code>tuned-adm profile</code>。</p>
+<p>一篇关于所有配置文件以及何时使用它们的详细文章 <a target="_blank" rel="noopener" href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/performance_tuning_guide/sect-red_hat_enterprise_linux-performance_tuning_guide-tool_reference-tuned_adm">这里</a>。</p>
+<h2 id="附加配置"><a href="#附加配置" class="headerlink" title="附加配置"></a>附加配置</h2><h3 id="bukkit-yml"><a href="#bukkit-yml" class="headerlink" title="bukkit.yml"></a>bukkit.yml</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">chunk-gc:</span></span><br><span class="line"> <span class="attr">period-in-ticks:</span> <span class="number">600</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>对于 <code>chunk-gc.period-in-ticks</code> 推荐的值：</strong></p>
+<p>不要分配超过 12GB 的内存，在大多数情况下，这没有太大区别。</p>
+<table>
+<thead>
+<tr>
+<th align="left">内存 / 玩家数</th>
+<th align="center">至多 30</th>
+<th align="center">30 - 60</th>
+<th align="center">60 - 100</th>
+<th align="center">超过 100</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">4 GB</td>
+<td align="center">400</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="left">8 GB</td>
+<td align="center">600</td>
+<td align="center">400</td>
+<td align="center">300</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="left">12 GB</td>
+<td align="center">1200</td>
+<td align="center">800</td>
+<td align="center">600</td>
+<td align="center">400</td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Tartaros</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://tartaros-gamer.github.io/2021/10/05/HillttyFlags/">https://tartaros-gamer.github.io/2021/10/05/HillttyFlags/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://tartaros-gamer.github.io" target="_blank">Tartaros</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B8%B8%E6%88%8F/">游戏</a><a class="post-meta__tags" href="/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF/">服务端</a><a class="post-meta__tags" href="/tags/%E5%90%AF%E5%8A%A8%E5%8F%82%E6%95%B0/">启动参数</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/10/05/MCServer/"><img class="next-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Minecraft 服务端推荐</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/10/05/MCServer/" title="Minecraft 服务端推荐"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-05</div><div class="title">Minecraft 服务端推荐</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://i.loli.net/2021/10/03/oT7xqFHZJiWpkGf.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Tartaros</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Tartaros-Gamer"><i class="fab fa-github"></i><span>关注我们的动向</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:mctartaros@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到 Tartaros 的文章发布地。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E4%BD%BF%E7%94%A8-Aikar-flags"><span class="toc-number">1.</span> <span class="toc-text">为什么不使用 Aikar flags?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%8F%82%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">启动参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E8%BD%AF%E4%BB%B6-%E6%A0%B8%E5%BF%83"><span class="toc-number">3.</span> <span class="toc-text">服务端软件 (核心)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F"><span class="toc-number">4.</span> <span class="toc-text">系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%8A%A0%E9%85%8D%E7%BD%AE"><span class="toc-number">5.</span> <span class="toc-text">附加配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bukkit-yml"><span class="toc-number">5.1.</span> <span class="toc-text">bukkit.yml</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/10/05/HillttyFlags/" title="Minecraft 启动参数之 Hilltty"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Minecraft 启动参数之 Hilltty"/></a><div class="content"><a class="title" href="/2021/10/05/HillttyFlags/" title="Minecraft 启动参数之 Hilltty">Minecraft 启动参数之 Hilltty</a><time datetime="2021-10-05T04:48:11.835Z" title="发表于 2021-10-05 04:48:11">2021-10-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/05/MCServer/" title="Minecraft 服务端推荐"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Minecraft 服务端推荐"/></a><div class="content"><a class="title" href="/2021/10/05/MCServer/" title="Minecraft 服务端推荐">Minecraft 服务端推荐</a><time datetime="2021-10-05T04:48:11.835Z" title="发表于 2021-10-05 04:48:11">2021-10-05</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Tartaros</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
